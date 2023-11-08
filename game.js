@@ -11,8 +11,11 @@ var observer = new MutationObserver(function(mutations){
     if (ad_contents && !ad_shown) {
         // ad is active as a video 
         ad_shown = true;
-        console.log("Ad playing!!!")
+        console.log("Ad playing!!!");
 
+        ad_contents.innerHTML = "<h1>RAGGGH</h1>";
+        console.log(ad_contents);
+        console.log("We made it!");
         }  
     else if(!ad_contents && ad_shown) {
         ad_shown = false;
