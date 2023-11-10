@@ -6,20 +6,26 @@ let ad_shown = false;
 
 // Callback function executes with any change to the page's html (DOM)
 var observer = new MutationObserver(function(mutations){
-    const ad_contents = document.querySelector("div.ad-showing");
     // this is the same as doing control + f and searching for "div.ad-showing"
+    const ad_contents = document.querySelector("div.ad-showing");
+    
+    if(ad_contents){
+        let contents = ad_contents.innerHTML;
+    }
+
     if (ad_contents && !ad_shown) {
         // ad is active as a video 
         ad_shown = true;
         console.log("Ad playing!!!");
 
-        ad_contents.innerHTML = "<h1>RAGGGH</h1>";
-        console.log(ad_contents);
+        ad_contents.innerHTML = `<img src='${chrome.runtime.getURL('/images/no_ad.png')}' style="width: 100%;">`;
         console.log("We made it!");
-        }  
+    }  
     else if(!ad_contents && ad_shown) {
         ad_shown = false;
-        // console.log("Video is playin!!!")
+        console.log("Ad no longer playing.");
+
+        ad_contents.innerHTML = contents;
     }
     
 });
